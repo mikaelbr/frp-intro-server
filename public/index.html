@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stem</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <h2>Hva er din politiske hjertesak?</h2>
+    <ul>
+        <li><a href="#" data-val="alt1">Æ vil ha belli sprit!</a></li>
+        <li><a href="#" data-val="alt2">Bygg et sperret asylmottak i utlandet.</a></li>
+        <li><a href="#" data-val="alt3">Grav etter mer penger i Lofoten!</a></li>
+    </ul>
+
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bacon.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+    (function() {
+        var socket = io.connect();
+
+        $("ul li a").asEventStream("click")
+            .map(function (e) {
+                var $el = $(e.currentTarget);
+                return $el.attr("data-val");
+            })
+            .debounceImmediate(2000)
+            .onValue(function (alt) {
+                socket.emit('vote', alt);
+            });
+    }());
+    </script>
+</body>
+</html>

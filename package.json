@@ -1,0 +1,15 @@
+{
+  "name": "frp-intro-server",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mikael Brevik <mikaelbre@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "socket.io": "~0.9.16",
+    "ecstatic": "~0.4.12"
+  }
+}
